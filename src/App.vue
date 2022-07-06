@@ -2,7 +2,8 @@
   <div id="app">
     <appHeader />
     我是根组件
-    <appFooter />
+    <router-view></router-view>
+    <appFooter v-show="$route.meta.show"/>
   </div>
 </template>
 

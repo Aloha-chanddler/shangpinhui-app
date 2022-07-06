@@ -6,19 +6,19 @@
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
           <!--以下结构分开显示-->
-          <p v-if="!userName">
+          <p>
             <span>请</span>
             <router-link to="/login">登录</router-link>
             <router-link class="register" to="/register">免费注册</router-link>
           </p>
-          <p v-else>
+          <!-- <p v-else>
             <a>{{ userName }}</a>
             <a class="register" @click="logout">退出登录</a>
-          </p>
+          </p> -->
         </div>
         <div class="typeList">
-          <router-link to="/center/myorder">我的订单</router-link>
-          <router-link to="/shopcart">我的购物车</router-link>
+          <a to="/center/myorder">我的订单</a>
+          <a to="/shopcart">我的购物车</a>
           <a href="###">我的尚品汇</a>
           <a href="###">尚品汇会员</a>
           <a href="###">企业采购</a>
@@ -32,7 +32,7 @@
     <div class="bottom">
       <h1 class="logoArea">
         <router-link class="logo" to="/home">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" alt=""/>
         </router-link>
       </h1>
       <div class="searchArea">
@@ -41,12 +41,12 @@
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
-            v-model="keyword"
+            v-model="keyWord"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
             type="button"
-            @click="goSearch"
+            @click="toSearch"
           >
             搜索
           </button>
@@ -59,6 +59,22 @@
 <script>
 export default {
   name: "appHeader",
+  data(){
+    return{
+      keyWord:''
+    }
+  },
+  methods:{
+    toSearch(){
+      // console.log(this.$router);
+      // this.$router.push(`/search/${this.keyWord}?key=${this.keyWord.toUpperCase()}`)
+      this.$router.push({
+        name:'search',
+        params:{keyWord:this.keyWord},
+        query:{key:this.keyWord.toUpperCase()}
+      })
+    }
+  }
 };
 </script>
 
